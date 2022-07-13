@@ -2,6 +2,7 @@ package com.example.config;
 
 import com.example.entity.TestBean;
 import com.example.interceptor.MainInterceptor;
+import com.example.interceptor.SubInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -77,11 +78,12 @@ public class WebConfiguration implements WebMvcConfigurer {
         return new TestBean();
     }
 
-    //配置类中添加拦截器
+    //一号二号拦截器放在一个方法中注册
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new MainInterceptor())
-                .addPathPatterns("/**");    //添加拦截器的匹配路径，只要匹配一律拦截
-                //.excludePathPatterns("/home");   //拦截器不进行拦截的路径
+        //一号拦截器
+        registry.addInterceptor(new MainInterceptor()).addPathPatterns("/**").excludePathPatterns("/home");
+        //二号拦截器
+        registry.addInterceptor(new SubInterceptor()).addPathPatterns("/**");
     }
 }

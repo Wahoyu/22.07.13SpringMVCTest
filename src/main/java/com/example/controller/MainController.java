@@ -98,7 +98,7 @@ public class MainController {
     TestBean bean;
     @RequestMapping(value = "/scope")
     public ModelAndView index3(){
-        System.out.println(bean);
+        //System.out.println(bean);
         return new ModelAndView("index");
     }
 
